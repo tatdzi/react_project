@@ -3,12 +3,14 @@ import postReduser from "./postReduser";
 import dialogReduser from "./dialogReduser";
 import messageReduser from "./messageReduser";
 import usersReducer from "./usersReducer";
+import authReduser from "./authReduser";
 
 let redusers = combineReducers({
     postsDate:postReduser,
     dialogData:dialogReduser,
     messagesDate:messageReduser,
-    usersDate: usersReducer
+    usersDate: usersReducer,
+    auth:authReduser
     }
 
 )
