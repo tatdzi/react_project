@@ -1,0 +1,14 @@
+.dialogsPage {
+    display: grid;
+    grid-template-areas: "d m";
+    grid-auto-columns: 2fr 10fr;
+    grid-gap: 10px;
+    margin: 0 auto;
+}
+.dialogs {
+    grid-area: d;
+
+}
+.messages {
+    grid-area: m;
+}

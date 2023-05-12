@@ -1,0 +1,15 @@
+.photo img{
+    height: 200px;
+    width: 200px;
+}
+.grids{
+    display: grid;
+    grid-template-areas:"p i";
+
+}
+.photo{
+    grid-area: p;
+}
+.info{
+    grid-area: i;
+}
