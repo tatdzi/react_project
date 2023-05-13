@@ -19,7 +19,6 @@ let initialState = {
 
 
 const usersReducer = (state = initialState,action)=>{
-    let state_copy
 switch (action.type){
     case FOLLOW:
         return  {

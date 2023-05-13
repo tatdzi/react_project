@@ -8,7 +8,6 @@ import {useLocation, useNavigate, useParams} from "react-router-dom";
 class ProfileContainer extends React.Component{
 
     componentDidMount() {
-        debugger
         let userId = this.props.router.params.userId;
         if (userId === null){
             userId = 2
@@ -19,7 +18,6 @@ class ProfileContainer extends React.Component{
             });
     }
     render() {
-        debugger
         return<Profile {...this.props}/>
     }
 }
