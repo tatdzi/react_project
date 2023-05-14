@@ -1,4 +1,4 @@
-import store from "./state";
+import store from "../../redux/state";
 
 const FOLLOW = "FOLLOW"
 const UNFOLLOW="UNFOLLOW"

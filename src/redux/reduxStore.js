@@ -2,7 +2,7 @@ import {combineReducers, legacy_createStore} from "redux";
 import postReduser from "./postReduser";
 import dialogReduser from "./dialogReduser";
 import messageReduser from "./messageReduser";
-import usersReducer from "./usersReducer";
+import usersReducer from "../components/header/usersReducer";
 import authReduser from "./authReduser";
 
 let redusers = combineReducers({
