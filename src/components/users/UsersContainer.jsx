@@ -7,7 +7,6 @@ import {
     unfollowCreater
 } from "../header/usersReducer";
 import React from "react";
-import axios from "axios";
 import User from "./User/User";
 import Users from "./Users";
 import PreLoader from "../common/PreLoader";
@@ -16,10 +15,10 @@ import {getUsers} from "../../api/api";
 class UsersContainer extends React.Component{
     componentDidMount() {
         this.props.setFetching( true)
-        getUsers(this.props.currentPage,this.props.pageSize).then(response => {
+        getUsers(this.props.currentPage,this.props.pageSize).then(data => {
                 this.props.setFetching( false)
-                this.props.setUsers(response.items);
-                this.props.setTotalUsersCount(response.totalCount);
+                this.props.setUsers(data.items);
+                this.props.setTotalUsersCount(data.totalCount);
             });
     }
     onPageChange = (page) =>{
