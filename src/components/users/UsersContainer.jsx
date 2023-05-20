@@ -1,13 +1,12 @@
 import {connect} from "react-redux";
 import {
-    followCreater, setFetching,
+    followCreater, followingInProgres, followingInProgress, setFetching,
     setTotalUsersCount,
     setUsersCreater,
     setUsersPageCreater,
     unfollowCreater
-} from "../header/usersReducer";
+} from "../../redux/usersReducer";
 import React from "react";
-import axios from "axios";
 import User from "./User/User";
 import Users from "./Users";
 import PreLoader from "../common/PreLoader";
@@ -16,10 +15,10 @@ import {getUsers} from "../../api/api";
 class UsersContainer extends React.Component{
     componentDidMount() {
         this.props.setFetching( true)
-        getUsers(this.props.currentPage,this.props.pageSize).then(response => {
+        getUsers(this.props.currentPage,this.props.pageSize).then(data => {
                 this.props.setFetching( false)
-                this.props.setUsers(response.items);
-                this.props.setTotalUsersCount(response.totalCount);
+                this.props.setUsers(data.items);
+                this.props.setTotalUsersCount(data.totalCount);
             });
     }
     onPageChange = (page) =>{
@@ -35,7 +34,9 @@ class UsersContainer extends React.Component{
         let map = this.props.usersDate.usersDate.map
         (user =><User user={user}
                       follow={this.props.follow}
-                      unfollow={this.props.unfollow}/>)
+                      unfollow={this.props.unfollow}
+                      followingInProgres={this.props.followingInProgres}
+                      followingInProgress={this.props.followingInProgress}/>)
         return map;
     }
 
@@ -57,7 +58,8 @@ let mapStateToProps = (state) =>{
         pageSize : state.usersDate.pageSize,
         totalUsersCount : state.usersDate.totalUsersCount,
         currentPage : state.usersDate.currentPage,
-        isFetching: state.usersDate.isFetching
+        isFetching: state.usersDate.isFetching,
+        followingInProgress: state.usersDate.followingInProgress
     }
 }
 let mapDispatchToProps = (dispatch) =>{
@@ -79,6 +81,9 @@ let mapDispatchToProps = (dispatch) =>{
         },
         setFetching :(isFeching)=>{
             dispatch(setFetching(isFeching))
+        },
+        followingInProgres :(followingInProgress)=>{
+            dispatch(followingInProgres(followingInProgress))
         }
 
 
