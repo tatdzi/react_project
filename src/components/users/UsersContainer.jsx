@@ -1,11 +1,11 @@
 import {connect} from "react-redux";
 import {
-    followCreater, setFetching,
+    followCreater, followingInProgres, followingInProgress, setFetching,
     setTotalUsersCount,
     setUsersCreater,
     setUsersPageCreater,
     unfollowCreater
-} from "../header/usersReducer";
+} from "../../redux/usersReducer";
 import React from "react";
 import User from "./User/User";
 import Users from "./Users";
@@ -34,7 +34,9 @@ class UsersContainer extends React.Component{
         let map = this.props.usersDate.usersDate.map
         (user =><User user={user}
                       follow={this.props.follow}
-                      unfollow={this.props.unfollow}/>)
+                      unfollow={this.props.unfollow}
+                      followingInProgres={this.props.followingInProgres}
+                      followingInProgress={this.props.followingInProgress}/>)
         return map;
     }
 
@@ -56,7 +58,8 @@ let mapStateToProps = (state) =>{
         pageSize : state.usersDate.pageSize,
         totalUsersCount : state.usersDate.totalUsersCount,
         currentPage : state.usersDate.currentPage,
-        isFetching: state.usersDate.isFetching
+        isFetching: state.usersDate.isFetching,
+        followingInProgress: state.usersDate.followingInProgress
     }
 }
 let mapDispatchToProps = (dispatch) =>{
@@ -78,6 +81,9 @@ let mapDispatchToProps = (dispatch) =>{
         },
         setFetching :(isFeching)=>{
             dispatch(setFetching(isFeching))
+        },
+        followingInProgres :(followingInProgress)=>{
+            dispatch(followingInProgres(followingInProgress))
         }
 
 

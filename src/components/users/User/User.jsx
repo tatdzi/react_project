@@ -3,6 +3,7 @@ import './User.module.css'
 import axios from "axios";
 import {NavLink} from "react-router-dom";
 import {followUser} from "../../../api/api";
+import {followingInProgres} from "../../../redux/usersReducer";
 
 const User=(props)=>{
 
@@ -19,20 +20,24 @@ const User=(props)=>{
                     </div>
                 <div>
                     {props.user.followed ?
-                        <button onClick={()=>{
+                        <button disabled={props.user.followingInProgress} onClick={()=>{
+                            props.followingInProgres(true)
                             followUser(props.user.id,props.user.followed)
                                 .then(response => {
                                     if (response.resultCode == 0){
                                         props.unfollow(props.user.id)
                                     }
+                                    props.followingInProgres(false)
                                 });
                         }}>unfollow</button>
-                        :<button onClick={()=>{
+                        :<button disabled={props.user.followingInProgress} onClick={()=>{
+                            props.followingInProgres(true)
                             followUser(props.user.id,props.user.followed)
                                 .then(response => {
                                     if (response.resultCode == 0){
                                         props.follow(props.user.id)
                                     }
+                                    props.followingInProgres(false)
                                 });
                         }}>follow</button>}
                 </div>

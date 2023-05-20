@@ -1,4 +1,4 @@
-import store from "../../redux/state";
+import store from "./state";
 
 const FOLLOW = "FOLLOW"
 const UNFOLLOW="UNFOLLOW"
@@ -6,6 +6,7 @@ const SET_USERS = "SET_USERS"
 const SET_USERS_PAGE = "SET_USERS_PAGE"
 const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT"
 const IS_FETCHING_TRUE = "IS_FETCHING_TRUE"
+const IS_FOLLOWING_IS_PROGRESS = "IS_FOLLOWING_IS_PROGRESS"
 
 
 let initialState = {
@@ -13,7 +14,8 @@ let initialState = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching:false
+    isFetching:true,
+    followingInProgress: false
 }
 
 
@@ -48,6 +50,8 @@ switch (action.type){
         return {...state,totalUsersCount: action.number}
     case IS_FETCHING_TRUE:
     return {...state,isFetching: action.isFetching}
+    case IS_FOLLOWING_IS_PROGRESS:
+        return {...state,followingInProgress: action.followingInProgress}
 
     default:
         return state
@@ -66,6 +70,8 @@ export  const setTotalUsersCount=(number)=>
     ({type:SET_TOTAL_USERS_COUNT,number:number})
 export const setFetching=(isFetching)=>
     ({type:IS_FETCHING_TRUE,isFetching:isFetching})
+export const followingInProgres=(followingInProgress)=>
+    ({type:IS_FOLLOWING_IS_PROGRESS,followingInProgres:followingInProgress})
 
 
 export default usersReducer
